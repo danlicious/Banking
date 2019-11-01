@@ -25,6 +25,20 @@ public class UserInputManager {
         return transAmount;
     }
     int retrieveUserOption(){
+        int r = 1;
+        for (int i = 0; i <= r; i++) {
+    
+        userOption = scan.nextInt();
         
+        if(userOption <= 7 && userOption >= 1){                
+       
+        }
+        else{
+            r++;
+            System.out.println("banking.UserInputManager.retrieveUserOption()");
+            
+        }
+    }
+        return userOption;
     }
 }
