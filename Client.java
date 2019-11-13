@@ -7,11 +7,19 @@ public class Client implements IClient {
     int id;
     String firstName;
     String lastName;
-    String[] accountList;
-    String[] clientName;
+    ArrayList<String> accountList = new ArrayList<>();
     int counter;
 
-    
+    public Client() {
+        
+    }
+
+    public Client (int id, String firstName, String lastName, ArrayList<String> accountList){
+        this.id = id;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.accountList = accountList;
+    }
     
     public int getId() {
         return id;
@@ -37,21 +45,14 @@ public class Client implements IClient {
         this.lastName = lastName;
     }
 
-    public String[] getAccountList() {
+    public ArrayList<String> getAccountList() {
         return accountList;
     }
 
-    public void setAccountList(String[] accountList) {
+    public void setAccountList(ArrayList<String> accountList) {
         this.accountList = accountList;
     }
 
-    public String[] getClientName() {
-        return clientName;
-    }
-
-    public void setClientName(String[] clientName) {
-        this.clientName = clientName;
-    }
 
     public int getCounter() {
         return counter;
@@ -61,24 +62,22 @@ public class Client implements IClient {
         this.counter = counter;
     }
     
-    public void createClient(String input){
-       
-    }
 
     @Override
     public void addAccount(Account newAccount) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        
+        for (String i : accountList) {
+  System.out.println(i);
+    
     }
 
     @Override
     public void displayAccounts() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+       
     }
 
     @Override
     public Account getAccount(int accountNumber) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+     
     }
-    
-    
 }
