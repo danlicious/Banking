@@ -1,9 +1,9 @@
 # Banking
-Hello
+Hey guys!
+To facilitate changes, upload ".java" (class) which are most likely inside of "..\NetBeansProjects\Banking\src\banking" 
 
-This will contain all the ".java" files required in our project & it will contain the original files the teacher gave us
-When you want to bring changes to one of the files, click on "branch" and give a name to a new branch that will contain your changes. Dont upload directly to the master!
-ex: "banking-fix"
-You can explain your changes when you commit
+When editing files, click on "branch" and give a name (ex: "banking-fix") to the new branch. Don't upload directly to the master (unless you are sure that it won't interfere with anyone else's work)
+
+If you want, add notes when you "commit" changes
 
 Honestly idk what I'm doing, heres a helpful link: https://guides.github.com/activities/hello-world/
