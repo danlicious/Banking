@@ -1,25 +1,30 @@
-
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package banking;
 
-
-public class Client implements IClient {
-    
-    int id;
+/**
+ *
+ * @author cstuser
+ */
+public class Client implements IClientextends Bank{
+    int clientId;
     String firstName;
     String lastName;
-    ArrayList<String> accountList = new ArrayList<>();
+    String[] accountList;
     int counter;
 
-    public Client() {
-        
-    }
-
-    public Client (int id, String firstName, String lastName, ArrayList<String> accountList){
-        this.id = id;
+    public Client(int clientId, String firstName, String lastName, String[] accountList) {
+        this.clientId = clientId;
         this.firstName = firstName;
         this.lastName = lastName;
         this.accountList = accountList;
     }
+  
+
+    
     
     public int getId() {
         return id;
@@ -45,14 +50,15 @@ public class Client implements IClient {
         this.lastName = lastName;
     }
 
-    public ArrayList<String> getAccountList() {
+    public String[] getAccountList() {
         return accountList;
     }
 
-    public void setAccountList(ArrayList<String> accountList) {
+    public void setAccountList(String[] accountList) {
         this.accountList = accountList;
     }
 
+   
 
     public int getCounter() {
         return counter;
@@ -62,22 +68,23 @@ public class Client implements IClient {
         this.counter = counter;
     }
     
-
-    @Override
-    public void addAccount(Account newAccount) {
-        
-        for (String i : accountList) {
-  System.out.println(i);
-    
-    }
-
-    @Override
-    public void displayAccounts() {
+    public void createClient(String input){
        
     }
 
     @Override
-    public Account getAccount(int accountNumber) {
-     
+    public void addAccount(Account newAccount) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+
+    @Override
+    public void displayAccounts() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public Account getAccount(int accountNumber) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+    
 }
