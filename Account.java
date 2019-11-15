@@ -13,7 +13,52 @@ import java.util.ArrayList;
  */
 public class Account {
     
-    ArrayList<Integer> transactions = new ArrayList<Integer>();
+   private int accountNumber;
+    private int counter = 10000;
+    private double balance;
+    private ArrayList<Transaction> transactions;
+    private Client owner;
+
+  
+    
+    public Account() {
+        this.accountNumber = counter++;
+        this.transactions = new ArrayList<>();
+    }
+    
+    public int getAccountNumber() {
+        return accountNumber;
+    }
+    
+    public void setAccountNumber(int accountNumber) {
+        this.accountNumber = accountNumber;
+    }
+
+    public int getCounter() {
+        return counter;
+    }
+
+    public void setCounter(int counter) {
+        this.counter = counter;
+    }
+
+    public double getBalance() {
+        return balance;
+    }
+
+    public void setBalance(double balance) {
+        this.balance = balance;
+    }
+
+    public Client getOwner() {
+        return owner;
+    }
+
+    public void setOwner(Client owner) {
+        this.owner = owner;
+    }
+    
+    
     double deposit(double d){
         /**
      * Update the account balance with the amount of the deposit
@@ -28,7 +73,7 @@ public class Account {
      * Print every Transaction listed in the transactions list
      * 
      */
-         for (int transactions : transactions) {
+         for (Transaction transactions : transactions) {
              System.out.println(transactions);
         }
     }
