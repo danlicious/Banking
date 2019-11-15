@@ -13,7 +13,7 @@ import java.util.ArrayList;
  */
 public class Account {
     
-   private int accountNumber;
+  private int accountNumber;
     private int counter = 10000;
     private double balance;
     private ArrayList<Transaction> transactions;
@@ -68,7 +68,7 @@ public class Account {
      */
         
     }
-    void displayAllTransactions(){
+    public void displayAllTransactions(){
          /**
      * Print every Transaction listed in the transactions list
      * 
@@ -77,7 +77,7 @@ public class Account {
              System.out.println(transactions);
         }
     }
-        ArrayList<Transaction> getTransactions(){
+        public ArrayList<Transaction> getTransactions(){
             /**
      * Update the account balance with the amount of the withdrawl
      * Create the corresponding Transaction element and add it to the transactions list
@@ -85,13 +85,15 @@ public class Account {
      * return the new balance
      */
     }
-   
+        
+   @Override
     public String toString(){
          /**
      * return the string that you want to output when printing the object
      */
+      
     }
-    double withdrawal(double w){
+    public double withdrawal(double w){
           /**
      * Update the account balance with the amount of the withdrawal
      * Create the corresponding Transaction element and add it to the transactions list
