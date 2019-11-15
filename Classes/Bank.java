@@ -3,17 +3,9 @@ import java.util.ArrayList;
 public class Bank implements IBank{
     
     //Daniel - I put conditions to protect the bank properties
-    private static final String bankNumber; 
-
-    //Daniel - Creates a new bank object in "banking"
-    public Bank(String number){
-       bankNumber = number;
-       // private static final String address; 
-       // private static ArrayList<Client> clientList;  
-        
-        
-    }
-    
+    private static final String bankNumber = "123456789"; 
+    private static final String address = "821 Sainte Croix Ave";
+    private static ArrayList<Client> clientList = new ArrayList<>();
     
     @Override
     public void addClient(Client newClient) {
