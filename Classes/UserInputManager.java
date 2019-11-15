@@ -7,11 +7,11 @@ package banking;
 import java.util.Scanner;
 /**
  *
- * @author cstuser
+ * @author cstuserr
  */
 public class UserInputManager {
      Scanner scan = new Scanner(System.in);
-    Client TestObject = new Client(retrieveClientId(),firstName,lastName,accountList);
+   // Client TestObject = new Client(retrieveClientId(),firstName,lastName,accountList);
     int userOption;
     
     
@@ -61,6 +61,7 @@ public class UserInputManager {
         System.out.println("Please input your first name");
         String firstName = scan.next();                                                            // get variables firstName, lastName from Client??                 
         String lastName = scan.next();
+                                                                      // needs 'firstName,lastName' constructor
         return Client;
     }
     double retrieveTransactionAmount(){
