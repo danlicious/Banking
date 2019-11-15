@@ -1,25 +1,30 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package banking;
-import java.util.ArrayList;
 
-public class Client implements IClient {
-    
-    int id;
-    private String firstName;
-    private String lastName;
-    private ArrayList<Account> accountList;
-    private static int counter = 10000;
+/**
+ *
+ * @author cstuser
+ */
+public class Client implements IClient{
+    int clientId;
+    String firstName;
+    String lastName;
+    String[] accountList;
+    int counter;
 
-    public Client() {
-        this.accountList = new ArrayList<>();
-    } 
-
-    public Client(String firstName, String lastName) {
-        this.accountList = new ArrayList<>();
+    public Client(int clientId, String firstName, String lastName, String[] accountList) {
+        this.clientId = clientId;
         this.firstName = firstName;
         this.lastName = lastName;
-        counter++;
-        this.id = counter;
+        this.accountList = accountList;
     }
+  
+
+    
     
     public int getId() {
         return id;
@@ -45,9 +50,15 @@ public class Client implements IClient {
         this.lastName = lastName;
     }
 
-    public ArrayList<Account> getAccountList() {
+    public String[] getAccountList() {
         return accountList;
     }
+
+    public void setAccountList(String[] accountList) {
+        this.accountList = accountList;
+    }
+
+   
 
     public int getCounter() {
         return counter;
@@ -57,34 +68,23 @@ public class Client implements IClient {
         this.counter = counter;
     }
     
+    public void createClient(String input){
+       
+    }
 
     @Override
     public void addAccount(Account newAccount) {
-        
-        this.accountList.add(newAccount);
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
     public void displayAccounts() {
-       
-        for (Account i: accountList){
-            System.out.println("");
-        }
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
     public Account getAccount(int accountNumber) {
-        for (int i = 0; i < accountList.size(); i++) {
-            if(accountNumber == accountList.get(i).getAccountNumber()){
-                return accountList.get(i);
-            }
-        }
-        return null;
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-    public String toString(){
-        
-    String clientObj = firstName + " " + lastName + " " + "[" + id + "]";
     
-    return clientObj;
-    }
 }
