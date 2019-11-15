@@ -1,24 +1,24 @@
-
 package banking;
-
+import java.util.ArrayList;
 
 public class Client implements IClient {
     
     int id;
-    String firstName;
-    String lastName;
-    ArrayList<String> accountList = new ArrayList<>();
-    int counter;
+    private String firstName;
+    private String lastName;
+    private ArrayList<Account> accountList;
+    private static int counter = 10000;
 
     public Client() {
-        
-    }
+        this.accountList = new ArrayList<>();
+    } 
 
-    public Client (int id, String firstName, String lastName, ArrayList<String> accountList){
-        this.id = id;
+    public Client(String firstName, String lastName) {
+        this.accountList = new ArrayList<>();
         this.firstName = firstName;
         this.lastName = lastName;
-        this.accountList = accountList;
+        counter++;
+        this.id = counter;
     }
     
     public int getId() {
@@ -45,14 +45,9 @@ public class Client implements IClient {
         this.lastName = lastName;
     }
 
-    public ArrayList<String> getAccountList() {
+    public ArrayList<Account> getAccountList() {
         return accountList;
     }
-
-    public void setAccountList(ArrayList<String> accountList) {
-        this.accountList = accountList;
-    }
-
 
     public int getCounter() {
         return counter;
@@ -66,18 +61,30 @@ public class Client implements IClient {
     @Override
     public void addAccount(Account newAccount) {
         
-        for (String i : accountList) {
-  System.out.println(i);
-    
+        this.accountList.add(newAccount);
     }
 
     @Override
     public void displayAccounts() {
        
+        for (Account i: accountList){
+            System.out.println("");
+        }
     }
 
     @Override
     public Account getAccount(int accountNumber) {
-     
+        for (int i = 0; i < accountList.size(); i++) {
+            if(accountNumber == accountList.get(i).getAccountNumber()){
+                return accountList.get(i);
+            }
+        }
+        return null;
+    }
+    public String toString(){
+        
+    String clientObj = firstName + " " + lastName + " " + "[" + id + "]";
+    
+    return clientObj;
     }
 }
