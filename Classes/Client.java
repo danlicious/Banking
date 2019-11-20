@@ -67,9 +67,9 @@ public class Client implements IClient {
     @Override
     public void displayAccounts() {
        
-        for (Account i: accountList){
-            System.out.println("");
-        }
+        accountList.forEach((i) -> {
+            System.out.println(i);
+        });
     }
 
     @Override
@@ -81,6 +81,7 @@ public class Client implements IClient {
         }
         return null;
     }
+    @Override
     public String toString(){
         
     String clientObj = firstName + " " + lastName + " " + "[" + id + "]";
