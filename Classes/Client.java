@@ -54,7 +54,7 @@ public class Client implements IClient {
     }
 
     public void setCounter(int counter) {
-        this.counter = counter;
+        Client.counter = counter;
     }
     
 
