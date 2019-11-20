@@ -5,10 +5,7 @@ public class UserInputManager {
      Scanner scan = new Scanner(System.in);
    // Client TestObject = new Client(retrieveClientId(),firstName,lastName,accountList);
     int userOption;
-    
-    
-    
-   
+
     int retrieveAccountNumber(){
 
         System.out.print("Please enter the account number of the desired account: ");
@@ -41,22 +38,38 @@ public class UserInputManager {
         double transAmount = scan.nextDouble();
         return transAmount;
     }
+    
+    //Code Review 20nov: When I call this function, it asks me to do it twice.. Please fix. -Dan
     int retrieveUserOption(){
 
-        int r = 1;
-        for (int i = 0; i <= r; i++) {
-            System.out.println("Please enter the digit of one of the 7 options available: ");
-        userOption = scan.nextInt();
+        /*String userOption = scan.next();
+        for(int i = 1; i=<7; i++){
+    
+        } 
+        if(userOption.contains("1")){
         
-        if(userOption <= 7 && userOption >= 1){                
-       
+        }else{
+            System.out.println("Please select the appropriate option");
         }
-        else{
-            r++;
-            System.out.println("banking.UserInputManager.retrieveUserOption()");
-            
+        
+        System.out.println(userOption);
+        */
+        
+        
+        int r = 1;
+            for (int i = 0; i <= r; i++) {
+                System.out.println("Please enter the digit of one of the 7 options available: ");
+            userOption = scan.nextInt();
+
+            if(userOption <= 7 && userOption >= 1){                
+
+            }
+            else{
+                r++;
+                System.out.println("banking.UserInputManager.retrieveUserOption()");
+
+            }
         }
-    }
-        return userOption;
+        return 1;
     }
 }
