@@ -2,6 +2,7 @@ package banking;
 
 import java.util.ArrayList;
 
+
 public class Account{
     
   private int accountNumber;
@@ -63,27 +64,50 @@ public class Account{
     
     
     double deposit(double d){
-
-       return balance;
+    
+        this.balance = this.balance+d;
+      
+        
+        // Create the corresponding Transaction element and add it to the transactions list
+        
+        return this.balance;
+        
+       
+  
+     
+    
+        
     }
     public void displayAllTransactions(){
-
-         for (Transaction transactions : transactions) {
-             System.out.println(transactions);
-        }
+      
+      transactions.forEach((i) -> {
+          System.out.println(i);
+      });
     }
-      public ArrayList<Transaction> getTransactions(){
-  
-            return transactions;
+    public ArrayList<Transaction> getTransactions(){
+      return null;
+                     
     }
         
    @Override
     public String toString(){
-
-      return "Ayylmao";
+      return null;
+         /**
+     * return the string that you want to output when printing the object
+     */
+      
+      
     }
     public double withdrawal(double w){
-
-          return w;
+          
+       this.balance = this.balance - w;
+       
+     
+     // Create the corresponding Transaction element and add it to the transactions list
+      
+     return this.balance;
+     
+    
     }
 }
+
