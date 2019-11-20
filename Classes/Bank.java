@@ -10,7 +10,7 @@ public class Bank implements IBank{
     @Override
     public void addClient(Client newClient) {
         System.out.println("Creating a new client!");
-        
+        System.out.println("Plea");
     }
 
     @Override
