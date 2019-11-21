@@ -3,7 +3,18 @@ public class Banking {
     public static void main(String[] args) {
        UserInputManager uim = new UserInputManager();
        Bank bank = new Bank();
-       System.out.println("Welcome to our bank! Please select an option below:\n[1] Add a new Client\n[2] Create a new Account\n[3] Make a Deposit\n[4] Make a Withdrawal\n[5] List Account Transactions\n[6] List Clients\n[7] List Client Accounts ");
+              
+      String option1 = "[1] Add a new Client"; 
+      String option2 = "[2] Create a new Account";
+      String option3 = "[3] Make a Deposit";
+      String option4 = "[4] Make a Withdrawal";
+      String option5 = "[5] List Account Transactions";
+      String option6 = "[6] List Clients";
+      String option7 = "[7] List Client Accounts";
+              
+       System.out.println("\n\n      Welcome to our bank \"Big Brains, Big Money\"\n\n=========================================================");       
+       System.out.printf("%n%-32s%-32s%n%-32s%-32s%n%-32s%-32s%n%-32s%n%n=========================================================%n%n",option1,option2,option3,option4,option5,option6,option7);
+       
        int userOption = uim.retrieveUserOption();
        switch (userOption){
            case 1:
