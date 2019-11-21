@@ -11,8 +11,8 @@ public class Bank implements IBank{
     public void addClient(Client newClient) {
         
         System.out.println("Adding Client to the list of clients");
-        clientList.add(newClient.getId(),newClient);
-        clientList.toString();
+        clientList.add(newClient.getId()-1,newClient);
+        System.out.println(clientList.toString());
         
     }
 

@@ -7,7 +7,7 @@ public class Client implements IClient {
     private String firstName;
     private String lastName;
     private ArrayList<Account> accountList;
-    private static int counter = 10000;
+    private static int counter = 0;
 
     public Client() {
         this.accountList = new ArrayList<>();
