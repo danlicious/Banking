@@ -26,10 +26,11 @@ public class UserInputManager {
     }
     Client retrieveClientInfo(){
 
-        System.out.println("Please input your first name");
-        String firstName = scan.next();                                                            // get variables firstName, lastName from Client??                 
+         System.out.println("What is your first name?");
+        String firstName = scan.next();                                                            // get variables firstName, lastName from Client??  
+        System.out.println("What is your last name?");
         String lastName = scan.next();
-        Client client = new Client();                                                             // needs 'firstName,lastName' constructor
+        Client client = new Client(firstName,lastName);                                                             // needs 'firstName,lastName' constructor
         return client;
     }
     double retrieveTransactionAmount(){
