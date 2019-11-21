@@ -3,13 +3,13 @@ package banking;
 
 public class Transaction implements ITransaction{
   
-   private String transactionType;
+   private String type;
    private double amount;
    
    @Override
     public String toString(){
        
-       System.out.println("");  
-       return null;
+      String TransText = type + "of" + amount;  
+      return TransText;
     }
 }
