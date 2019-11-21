@@ -56,8 +56,8 @@ public class UserInputManager {
         */
         
         
-        int r = 1;
-            for (int i = 0; i <= r; i++) {
+         int r = 1;
+            for (int i = 0; i < r; i++) {
                 System.out.println("Please enter the digit of one of the 7 options available: ");
             userOption = scan.nextInt();
 
@@ -66,10 +66,10 @@ public class UserInputManager {
             }
             else{
                 r++;
-                System.out.println("banking.UserInputManager.retrieveUserOption()");
+                System.err.println("Not a valid option - Please try again!!!");
 
             }
         }
-        return 1;
+        return userOption;
     }
 }
