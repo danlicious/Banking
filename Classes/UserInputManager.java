@@ -39,7 +39,7 @@ public class UserInputManager {
         return transAmount;
     }
     
-    //Code Review 20nov: When I call this function, it asks me to do it twice.. Please fix. -Dan
+    //Code Review 20nov: When I call this function, it asks me to do it twice.. Please fix. -Dan    I did it!!!! -frahan
     int retrieveUserOption(){
 
         /*String userOption = scan.next();
