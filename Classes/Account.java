@@ -10,7 +10,7 @@ public class Account{
     protected double balance;
     protected ArrayList<Transaction> transactions;
     protected Client owner;
-    String type;
+    protected String type;
   
     
 
@@ -61,6 +61,14 @@ public class Account{
     public void setOwner(Client owner) {
         this.owner = owner;
     }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
     
     
     double deposit(double d){
@@ -110,4 +118,5 @@ public class Account{
     
     }
 }
+
 
