@@ -1,21 +1,25 @@
 package banking;
+
 public class Banking {
+    
     public static void main(String[] args) {
+        
        UserInputManager uim = new UserInputManager();
        Bank bank = new Bank();
               
-      String option1 = "[1] Add a new Client"; 
-      String option2 = "[2] Create a new Account";
-      String option3 = "[3] Make a Deposit";
-      String option4 = "[4] Make a Withdrawal";
-      String option5 = "[5] List Account Transactions";
-      String option6 = "[6] List Clients";
-      String option7 = "[7] List Client Accounts";
-              
+       String option1 = "[1] Add a new Client"; 
+       String option2 = "[2] Create a new Account";
+       String option3 = "[3] Make a Deposit";
+       String option4 = "[4] Make a Withdrawal";
+       String option5 = "[5] List Account Transactions";
+       String option6 = "[6] List Clients";
+       String option7 = "[7] List Client Accounts";
        System.out.println("\n\n      Welcome to our bank \"Big Brains, Big Money\"\n\n=========================================================");       
        System.out.printf("%n%-32s%-32s%n%-32s%-32s%n%-32s%-32s%n%-32s%n%n=========================================================%n%n",option1,option2,option3,option4,option5,option6,option7);
        
        int userOption = uim.retrieveUserOption();
+       int i = 2;
+       do{
        switch (userOption){
            case 1:
                System.out.println("You selected: Add a new Client");
@@ -39,6 +43,10 @@ public class Banking {
             case 7:
                System.out.println("You selected: List Client Accounts");
                break;
+             }
+            userOption = uim.retrieveUserOption();
+        } while(i==2);
+       
        } 
     }
-}
+
