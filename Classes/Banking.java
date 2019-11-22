@@ -21,12 +21,14 @@ public class Banking {
        int i = 2;
        do{
        switch (userOption){
+           
            case 1:
                System.out.println("You selected: Add a new Client");
                bank.addClient(uim.retrieveClientInfo());
                break;
            case 2:
                System.out.println("You selected: Create a new Account");
+               System.out.println(uim.retrieveClientId());
                break;
            case 3:
                System.out.println("You selected: Make a Deposit");
