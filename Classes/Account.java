@@ -99,7 +99,9 @@ public class Account{
         
    @Override
     public String toString(){
-      return null;
+      
+      String returnAccount = "["+ type +"(" + counter + ")" + "] : " + balance + "$";  
+        return returnAccount;
          /**
      * return the string that you want to output when printing the object
      */
@@ -118,5 +120,4 @@ public class Account{
     
     }
 }
-
 
