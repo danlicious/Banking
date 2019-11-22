@@ -20,9 +20,21 @@ public class UserInputManager {
     }
     int retrieveClientId(){
 
+        
         System.out.print("Please enter your client id: ");
-        int clientId = scan.nextInt();
-        return clientId;
+        int id = scan.nextInt();
+        int clientLength = Bank.getClientList().size() + 1;
+        int r = 1;
+        for (int i = 0; i < r; i++) {
+             if(id <= clientLength && id > 0){}
+        else{
+            System.out.println("banking.UserInputManager.retrieveClientId()");
+            r++;
+        }
+        }
+     
+        return id;
+        
     }
     Client retrieveClientInfo(){
 
