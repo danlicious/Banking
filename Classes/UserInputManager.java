@@ -6,6 +6,7 @@ public class UserInputManager {
 
     private static final Scanner scan = new Scanner(System.in);
     private static String userInput;
+    private static String finalInput;
     private static String sample;
     private static int inputLength;
     private static int counter;
@@ -30,32 +31,34 @@ public class UserInputManager {
                     System.err.println("INPUT WAS 'stop' (STOPPING THE PROGRAM)");
                     System.exit(0);
                 case "":
-                    System.err.println("Sorry, I didn't get that.\n");
+                    System.err.println("Nothing happens. The program is silent.\n");
                     break;
                 default:
                     switch (desiredType) {
 
-                        //Selection of the 7 banking options.
+                        //Caters the input so that it satisfies the calling function.
                         case "option":
-
-                            //Only allow 1 digit when selecting.
                             if (inputLength == 1) {
                                 try {
                                     int i = Integer.parseInt(userInput);
 
-                                    //Only allow 1 to 7
                                     if (i <= 7 && i >= 1) {
+                                        
                                         return userInput;
-                                    } else {
+                                        
+                                    } else {//prevents integers other than 1 to 7;
+                                        
                                         System.err.println(i + " is not an option, try 1-7.\n");
-                                    }
-
-                                    //Only allow integers
-                                } catch (Exception e) {
+                                    }  
+                                } catch (Exception e) {//Prevents non-integer input
+                                    
                                     System.err.println("The input must be a whole number. Try 1-7.\n");
+                                    
                                 }
-                            } else {
+                            } else {//executes when input is longer than 1.
+                                
                                 System.err.println("The selection must contain a single digit. Try 1-7.\n");
+                                
                             }
                             break;
 
@@ -65,79 +68,85 @@ public class UserInputManager {
                                 System.err.println("You name must contain 1 to 32 characters.\n");
                                 break;
                             } else {
-
-                                String possibleCharacters[] = {"A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z", "-", " "};
+                                
+                                String possibleComponents[] = {"A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z", "-", " "};
                                 boolean validName = false;
                                 boolean doLoop = true;
 
-                                //Check every letter
+                                //Check every letter so that it belongs to the possibleCharacters[] array.
                                 while (counter < inputLength && doLoop == true) {
-
+                                    
+                                    validName = false;
                                     sample = userInput.substring(counter, counter + 1);
 
-                                    validName = false;
-
-                                    //Look for match
-                                    for (String pc : possibleCharacters) {
+                                    for (String pc : possibleComponents) {
                                         if (sample.equals(pc)) {
                                             validName = true;
                                         }
                                     }
-                                    if (validName == false) {
+                                    if (validName == false) {   //If no match found, stop checking the characters.
                                         doLoop = false;
                                     } else {
                                         counter++;
                                     }
-                                }
-                                if (validName == true) {
-
-                                    //Auto-capitalize name
-                                    String capitalizedName = "";
-
-                                    for (counter = 0; counter < inputLength; counter++) {
-
-                                        int i = counter;
-                                        String s = userInput.substring(i, i + 1);
-
-                                        if (s.equals(" ") || s.equals("-")) {
-
-                                            //prevent useless spaces/hypens
-                                            try {
-                                                if (userInput.substring(i + 1, i + 2).equals(" ") || userInput.substring(i + 1, i + 2).equals("-")) {
-                                                    counter++;
-                                                } else {
-                                                    capitalizedName = capitalizedName + s + userInput.substring(i + 1, i + 2).toUpperCase();
-                                                    System.out.println("capitalize at: " + s);
-                                                    counter++;
-                                                }
-                                            } catch (Exception e) {
-
-                                            }
-                                        } else if (i == 0) {
-
-                                            capitalizedName = capitalizedName + userInput.substring(i, i + 1).toUpperCase();
-                                        } else {
-
-                                            capitalizedName = capitalizedName + userInput.substring(i, i + 1).toLowerCase();
-                                        }
-                                    }
-                                    return capitalizedName;
+                                }                           
+                                if (validName == true) {    //If each component has a match, continue.
+                                    
+                                    finalInput = autoCapitalize(userInput); //Auto-capitalize name
+                                    return finalInput;
+                                    
                                 } else {
                                     System.err.println("Your name is not valid. Please use a-Z.\n");
                                 }
                             }
                             break;
+
                         case "id":
                             System.out.println("Beep Boop");
                             break;
-                            
+
                     }
- 
+
                     break;
             }
         }
         System.out.println("reached end. BAD");
-        return userInput;
+        return "Bruh Moment 100 (error)";
+    }
+
+    private String autoCapitalize(String initialString) {
+
+        String capitalizedName = "";
+        int sLength = initialString.length();
+        System.err.println("INITIALSTRING: " + initialString);
+        for (counter = 0; counter < sLength; counter++) {
+
+
+            String s = initialString.substring(counter, counter + 1);
+            System.out.print("COUNTER: " + counter + "  SUBSTRING:  " + s);
+
+            if (s.equals(" ") || s.equals("-")) {
+
+                //prevent useless spaces/hypens by checking what is after a space or hyphen.
+                try {
+                    if (initialString.substring(counter + 1, counter + 2).equals(" ") || initialString.substring(counter + 1, counter + 2).equals("-")) {
+                        //WHEN THERE IS A "-" THERE IS A PROBLEM
+                        
+                    } else {
+                        capitalizedName = capitalizedName + s + initialString.substring(counter + 1, counter + 2).toUpperCase();
+                        System.out.println("capitalizing at: " + s);
+                        counter++;
+                    }
+                } catch (Exception e) {
+                    System.err.println("[ DEV Exception in UserInputManager, autoCapitalize() for " + initialString + " ]");
+                }
+            } else if (counter == 0) {
+                capitalizedName = capitalizedName + initialString.substring(counter, counter + 1).toUpperCase();
+            } else {
+                capitalizedName = capitalizedName + initialString.substring(counter, counter + 1).toLowerCase();
+            }
+        }
+        return capitalizedName;
     }
 
     int retrieveUserOption() {
@@ -166,12 +175,13 @@ public class UserInputManager {
         Client client = new Client(firstName, lastName);
         return client;
     }
+
     int retrieveClientId() {
 
-            System.out.print("Please enter your client id: ");
-            int id = Integer.parseInt(scanInput("id"));
-            
-            /*
+        System.out.print("Please enter your client id: ");
+        int id = Integer.parseInt(scanInput("id"));
+
+        /*
            System.out.print("Please enter your client id: ");
         int id = scan.nextInt();
         int clientLength = Bank.getClientList().size();
@@ -193,9 +203,10 @@ public class UserInputManager {
         }
 
         return id;
-        */
+         */
         return id;
     }
+
     int retrieveAccountNumber() {
 
         System.out.print("Please enter the account number of the desired account: ");
@@ -209,29 +220,23 @@ public class UserInputManager {
         int accountType = scan.nextInt();   //default type is 3, meaning no type
         //Assuming the account will be created in this function
         Account Account = null;
-        
+
         switch (accountType) {
-            case 1:
-                {
-                    Account = new CheckingAccount();
-                    break;
-                }
-            case 2:
-                {
-                    Account = new SavingsAccount();
-                    break;
-                }
+            case 1: {
+                Account = new CheckingAccount();
+                break;
+            }
+            case 2: {
+                Account = new SavingsAccount();
+                break;
+            }
             default:
                 System.err.println("Not a valid option - please try again");
                 break;
         }
-      
-        
+
         return Account;
     }
-
-    
-    
 
     double retrieveTransactionAmount() {
         System.out.print("Please enter the desired amount for the current transaction: ");
