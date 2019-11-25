@@ -5,45 +5,34 @@ public class Banking {
     public static void main(String[] args) {
         UserInputManager uim = new UserInputManager();
         Bank bank = new Bank();
-
-        //System.out.print(uim.scanInput());
-        String option1 = "[1] Add a new Client";
-        String option2 = "[2] Create a new Account";
-        String option3 = "[3] Make a Deposit";
-        String option4 = "[4] Make a Withdrawal";
-        String option5 = "[5] List Account Transactions";
-        String option6 = "[6] List Clients";
-        String option7 = "[7] List Client Accounts";
-        System.out.println("\n\n      Welcome to our bank \"Big Brains, Big Money\"\n\n=========================================================");
-        System.out.printf("%n%-32s%-32s%n%-32s%-32s%n%-32s%-32s%n%-32s%n%n=========================================================%n%n", option1, option2, option3, option4, option5, option6, option7);
-
+        System.out.println("\n\n      Welcome to our bank \"Big Brains, Big Money\"");
         int userOption = uim.retrieveUserOption();
-
-        while (!uim.userInput.equals("stop")) {
+        boolean doLoop = true;
+        while (doLoop) {
             switch (userOption) {
 
                 case 1:
-                    System.out.println("You selected: Add a new Client");
+                    System.out.println("[Bank] You selected: Add a new Client\n");
                     bank.addClient(uim.retrieveClientInfo());
                     break;
                 case 2:
-                    System.out.println("You selected: Create a new Account");
+                    System.out.println("[Bank] You selected: Create a new Account\n");
                     System.out.println(uim.retrieveClientId());
                     break;
                 case 3:
-                    System.out.println("You selected: Make a Deposit");
+                    System.out.println("[Bank] You selected: Make a Deposit\n");
                     break;
                 case 4:
-                    System.out.println("You selected: Make a Withdrawal");
+                    System.out.println("[Bank] You selected: Make a Withdrawal\n");
                     break;
                 case 5:
-                    System.out.println("You selected: List Account Transactions");
+                    System.out.println("[Bank] You selected: List Account Transactions\n");
                     break;
                 case 6:
-                    System.out.println("You selected: List Clients");
+                    System.out.println("[Bank] You selected: List Clients\n");
                     break;
                 case 7:
-                    System.out.println("You selected: List Client Accounts");
+                    System.out.println("[Bank] You selected: List Client Accounts\n");
                     break;
             }
             userOption = uim.retrieveUserOption();

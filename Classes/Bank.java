@@ -10,9 +10,9 @@ public class Bank implements IBank{
     @Override
     public void addClient(Client newClient) {
         
-        System.out.println("Adding Client to the list of clients");
+        System.out.println("[ DEV Adding Client to the list of clients ]\n");
         clientList.add(newClient.getId()-1,newClient);
-        System.out.println(clientList.toString());
+        System.out.println("DEV " + clientList.toString());
         
     }
 
