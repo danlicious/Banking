@@ -171,15 +171,28 @@ public class UserInputManager {
             System.out.print("Please enter your client id: ");
             int id = Integer.parseInt(scanInput("id"));
             
-            /*int clientLength = Bank.getClientList().size() + 1;
-            int r = 1;
-            for (int i = 0; i < r; i++) {
-                if (id <= clientLength && id > 0) {
-                } else {
-                    System.out.println("banking.UserInputManager.retrieveClientId()");
-                    r++;
-                }
+            /*
+           System.out.print("Please enter your client id: ");
+        int id = scan.nextInt();
+        int clientLength = Bank.getClientList().size();
+        clientLength = 1;
+        System.err.println("clientLength = " + clientLength);
+        int r = 0;
+        for (int i = 0; i <= r; i++) {             //Assuming 'clientId' starts at '1'
+            if(clientLength == 0){
+                System.err.println("There");
             }
+            else if (id <= clientLength+1 && id > 0) {
+                System.err.println("if: r = " + r);   //testing
+                
+            } else {
+                System.err.println("Error, not a valid id");   
+                System.err.println("else: r = " + r);   //testing
+                r++;
+            }
+        }
+
+        return id;
         */
         return id;
     }
@@ -190,12 +203,31 @@ public class UserInputManager {
         return accountNum;
     }
 
-    // THIS NEEDS TO BE REWORKED
+    // THIS NEEDS TO BE REWORKED   
     Account retrieveAccountType() {
-        Account test = new Account();
         System.out.println("Please enter the type of account desired (\"1\" for Checkings, \"2\" for Savings) ");
-        int accountType = scan.nextInt();                                                       //default type is 3, meaning no type
-        return test;
+        int accountType = scan.nextInt();   //default type is 3, meaning no type
+        //Assuming the account will be created in this function
+        Account Account = null;
+        
+        switch (accountType) {
+            case 1:
+                {
+                    Account = new CheckingAccount();
+                    break;
+                }
+            case 2:
+                {
+                    Account = new SavingsAccount();
+                    break;
+                }
+            default:
+                System.err.println("Not a valid option - please try again");
+                break;
+        }
+      
+        
+        return Account;
     }
 
     
