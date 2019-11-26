@@ -4,149 +4,138 @@ import java.util.Scanner;
 
 public class UserInputManager {
 
-    private static final Scanner scan = new Scanner(System.in);
-    private static String userInput;
-    private static String finalInput;
-    private static String sample;
+    private static boolean valid;
     private static int inputLength;
     private static int counter;
+    private static String userInput;
+    private static String validInput;
+    private static String sample;
+    private static final Scanner scan = new Scanner(System.in);
 
     /* Daniel P.
         When the console needs to retrieve information, this code will prevent unwanted inputs. 
      */
-    private String scanInput(String desiredType) {
+    private String scanInput(String desiredReturn) {
 
         //Until the appropriate conditions are met, scanned values will not be returned.
-        boolean willReturn = false;
-        while (willReturn == false) {
-
+        do {
             userInput = scan.nextLine();
             inputLength = userInput.length();
             counter = 0;
+            valid = false;
 
-            System.out.println("\n[ DEV Detected input: " + userInput + " ]\n");
+            System.out.println("\n[DEV] Detected input: " + userInput + "\n");
 
             switch (userInput) {
                 case "stop":
                     System.err.println("INPUT WAS 'stop' (STOPPING THE PROGRAM)");
                     System.exit(0);
                 case "":
-                    System.err.println("Nothing happens. The program is silent.\n");
+                    System.err.println("Nothing happened.\n");
                     break;
                 default:
-                    switch (desiredType) {
+                    switch (desiredReturn) {
 
-                        //Caters the input so that it satisfies the calling function.
                         case "option":
-                            if (inputLength == 1) {
-                                try {
-                                    int i = Integer.parseInt(userInput);
 
-                                    if (i <= 7 && i >= 1) {
-                                        
-                                        return userInput;
-                                        
-                                    } else {//prevents integers other than 1 to 7;
-                                        
-                                        System.err.println(i + " is not an option, try 1-7.\n");
-                                    }  
-                                } catch (Exception e) {//Prevents non-integer input
-                                    
-                                    System.err.println("The input must be a whole number. Try 1-7.\n");
-                                    
+                            try {     //Only allow integers 1 to 7. 
+
+                                int i = Integer.parseInt(userInput);
+
+                                if (i <= 7 && i >= 1) {
+                                    valid = true;
+                                    validInput = userInput;
+                                } else {
+                                    valid = false;
                                 }
-                            } else {//executes when input is longer than 1.
-                                
-                                System.err.println("The selection must contain a single digit. Try 1-7.\n");
-                                
+                            } catch (Exception e) {
+                                valid = false;
+                            }
+                            if (valid == false) {
+                                System.err.println("Your input must correspond to one of the options.");
                             }
                             break;
 
                         case "name":
 
-                            if (inputLength < 1 || inputLength > 32) {
-                                System.err.println("You name must contain 1 to 32 characters.\n");
-                                break;
-                            } else {
-                                
-                                String possibleComponents[] = {"A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z", "-", " "};
-                                boolean validName = false;
-                                boolean doLoop = true;
+                            String possibleComponents[] = {"A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z", "-", " "};
+                            sample = userInput.substring(counter, counter + 1);
 
-                                //Check every letter so that it belongs to the possibleCharacters[] array.
-                                while (counter < inputLength && doLoop == true) {
-                                    
-                                    validName = false;
-                                    sample = userInput.substring(counter, counter + 1);
-
-                                    for (String pc : possibleComponents) {
-                                        if (sample.equals(pc)) {
-                                            validName = true;
-                                        }
+                            //Every letter must correspond to one in the array
+                            do {
+                                valid = false;
+                                for (String pc : possibleComponents) {
+                                    if (sample.equals(pc)) {
+                                        valid = true;
                                     }
-                                    if (validName == false) {   //If no match found, stop checking the characters.
-                                        doLoop = false;
-                                    } else {
-                                        counter++;
-                                    }
-                                }                           
-                                if (validName == true) {    //If each component has a match, continue.
-                                    
-                                    finalInput = autoCapitalize(userInput); //Auto-capitalize name
-                                    return finalInput;
-                                    
-                                } else {
-                                    System.err.println("Your name is not valid. Please use a-Z.\n");
                                 }
+                                if (valid == false) {
+                                    counter = inputLength;
+                                }
+                                counter++;
+                            } while (counter < inputLength);
+
+                            if (valid == true) {  //If each component has a match, capitalize and return.
+
+                                validInput = autoCapitalize(userInput);
+
+                            } else {
+                                System.err.println("Your name is not valid. Please use a-Z.\n");
                             }
                             break;
 
                         case "id":
                             System.out.println("Beep Boop");
                             break;
-
                     }
-
                     break;
             }
-        }
-        System.out.println("reached end. BAD");
-        return "Bruh Moment 100 (error)";
+        } while (valid == false);
+        return validInput;
     }
 
     private String autoCapitalize(String initialString) {
 
-        String capitalizedName = "";
-        int sLength = initialString.length();
-        System.err.println("INITIALSTRING: " + initialString);
-        for (counter = 0; counter < sLength; counter++) {
+        initialString = " " + initialString + " ";
+        String transformedString = "";
+        counter = 0;
 
+        while (counter <= initialString.length() - 1) {
 
-            String s = initialString.substring(counter, counter + 1);
-            System.out.print("COUNTER: " + counter + "  SUBSTRING:  " + s);
+            sample = initialString.substring(counter, counter + 1);
 
-            if (s.equals(" ") || s.equals("-")) {
+            if (sample.equals(" ") || sample.equals("-")) {
 
-                //prevent useless spaces/hypens by checking what is after a space or hyphen.
-                try {
-                    if (initialString.substring(counter + 1, counter + 2).equals(" ") || initialString.substring(counter + 1, counter + 2).equals("-")) {
-                        //WHEN THERE IS A "-" THERE IS A PROBLEM
-                        
-                    } else {
-                        capitalizedName = capitalizedName + s + initialString.substring(counter + 1, counter + 2).toUpperCase();
-                        System.out.println("capitalizing at: " + s);
+                    transformedString = transformedString + sample;
+                
+                while (sample.equals(" ") || sample.equals("-")) {
+
+                    try {
+                        sample = initialString.substring(counter, counter + 1);
                         counter++;
+                    } catch (Exception e) {
+                        counter++;
+                        sample = "";
                     }
-                } catch (Exception e) {
-                    System.err.println("[ DEV Exception in UserInputManager, autoCapitalize() for " + initialString + " ]");
                 }
-            } else if (counter == 0) {
-                capitalizedName = capitalizedName + initialString.substring(counter, counter + 1).toUpperCase();
+                sample = sample.toUpperCase();
+                transformedString = transformedString + sample;
+
             } else {
-                capitalizedName = capitalizedName + initialString.substring(counter, counter + 1).toLowerCase();
+
+                sample = (initialString.substring(counter, counter + 1)).toLowerCase();
+                transformedString = transformedString + sample;
+                counter++;
             }
         }
-        return capitalizedName;
+        //This removes the surrounding spaces that were added
+        if (transformedString.substring(transformedString.length() - 1, transformedString.length()).equals(" ")) {
+            transformedString = transformedString.substring(0, transformedString.length() - 1);
+        }
+        if (transformedString.substring(0, 1).equals(" ")) {
+            transformedString = transformedString.substring(1, transformedString.length());
+        }
+        return transformedString;
     }
 
     int retrieveUserOption() {
@@ -157,12 +146,11 @@ public class UserInputManager {
         String option5 = "[5] List Account Transactions";
         String option6 = "[6] List Clients";
         String option7 = "[7] List Client Accounts";
-        //System.out.println("\n\n      Welcome to our bank \"Big Brains, Big Money\"");
         System.out.println("\n=========================================================");
         System.out.printf("%n%-32s%-32s%n%-32s%-32s%n%-32s%-32s%n%-32s%n%n=========================================================%n%n", option1, option2, option3, option4, option5, option6, option7);
-        System.out.println("[Bank] Please enter the digit of one of the 7 options available: \n");
-        int userOption = Integer.parseInt(scanInput("option"));
+        System.out.println("[Bank] Please enter the digit of one of the 7 available options : \n");
 
+        int userOption = Integer.parseInt(scanInput("option"));
         return userOption;
     }
 
