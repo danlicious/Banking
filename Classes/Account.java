@@ -100,7 +100,7 @@ public class Account{
    @Override
     public String toString(){
       
-      String returnAccount = "["+ type +"(" + counter + ")" + "] : " + balance + "$";  
+      String returnAccount = type + "(" + counter + ")" + ": " + balance + " $";  
         return returnAccount;
          /**
      * return the string that you want to output when printing the object
