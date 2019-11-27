@@ -4,12 +4,12 @@ import java.util.Scanner;
 
 public class UserInputManager {
 
-    private static boolean valid;
-    private static int inputLength;
-    private static int counter;
-    private static String userInput;
-    private static String validInput;
-    private static String sample;
+    private static boolean valid; //Is the input usable by the calling method?
+    private static int inputLength; 
+    private static int counter; //used for counting
+    private static String userInput; 
+    private static String validInput; //Final and (if needed) transformed input.
+    private static String sample;   //used for substrings.
     private static final Scanner scan = new Scanner(System.in);
 
     
