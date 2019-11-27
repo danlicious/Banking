@@ -53,7 +53,7 @@ public class UserInputManager {
                             if (valid == false) {
                                 System.err.println("Your input must correspond to one of the options [1,7]");
                             }
-                            break;
+                        break;
 
                         //Daniel    
                         case "name":
@@ -78,7 +78,7 @@ public class UserInputManager {
                             } else {
                                 System.err.println("Your name is not valid. Please use a-Z.\n");
                             }
-                            break;
+                        break;
                             
                         //Daniel
                         case "clientId":
@@ -95,9 +95,9 @@ public class UserInputManager {
                                 valid = false;
                             }
                             if (valid == false) {
-                                System.err.println("It appears that client [" + userInput + "] does not exist. Are they perhaps a ghost? Please try again.\n");
+                                System.err.println("It appears that client [" + userInput + "] does not exist. Are they perhaps a ghost? Please try again.");
                             }
-                            break;
+                        break;
                             
                         //Daniel   
                         case "accountType":
@@ -116,7 +116,14 @@ public class UserInputManager {
                             if (valid == false) {
                                 System.err.println("[" + userInput + "] is not an option. Please select [1] or [2].");
                             }
-                            break;
+                        break;
+                            
+                        case "money":
+                            
+                            System.out.println("HMMMMMMMM WE LOVE MONEYYYYYYYYYYYYYYYYYYYY");
+                                                    
+                        break;
+                            
                     }
                     break;
             }
@@ -171,8 +178,7 @@ public class UserInputManager {
         String option7 = "[7] List Client Accounts";
         System.out.println("\nTo perform an action, enter its corresponding number.");
         System.out.println("=========================================================");
-        System.out.printf("%n%-32s%-32s%n%-32s%-32s%n%-32s%-32s%n%-32s%n%n=========================================================%n", option1, option2, option3, option4, option5, option6, option7);
-        System.out.print("\nSelection: ");
+        System.out.printf("%n%-32s%-32s%n%-32s%-32s%n%-32s%-32s%n%-32s%n%n=========================================================%nSelection: ", option1, option2, option3, option4, option5, option6, option7);
         int userOption = Integer.parseInt(scanInput("option"));
         return userOption;
     }
@@ -182,7 +188,7 @@ public class UserInputManager {
 
         System.out.print("\nWhat is the client's first name? ");
         String firstName = scanInput("name");
-        System.out.print("\nWhat is the client's last name? ");
+        System.out.print("What is the client's last name? ");
         String lastName = scanInput("name");
         Client client = new Client(firstName, lastName);
         return client;
@@ -207,8 +213,14 @@ public class UserInputManager {
 
     //Farhan, Daniel
     public static Account retrieveAccountType(Client owner) {
-
-        System.out.println("\nPlease enter the type of account desired    [1] Checkings    [2] Savings)");
+        
+        
+        String type1 = "[1] Checking";
+        String type2 = "[2] Savings";
+        System.out.println("\nPlease enter the desired type of account.");
+        System.out.println("=========================================================");
+        System.out.printf("%n%-32s%-32s%n%n=========================================================%nSelection: ", type1, type2);
+        
         int accountType = Integer.parseInt(scanInput("accountType"));
         
         Account account = null;

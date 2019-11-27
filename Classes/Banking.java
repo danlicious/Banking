@@ -20,9 +20,18 @@ public class Banking {
         2. Depending on option, Banking calls appropriate method in Bank.
         3. The methods in bank do what they have to do.
         
-        Inside of the UIM, please use the scanInput(String desiredType) method. It allows for cleaner code execution.
+        Inside of the UIM, please use the "scanInput(String desiredType)" method. It allows for cleaner code execution.
         If that is too intimidating, just do whatever works for now... then we'll see.
+        
+        I moved the bulk of the code into Bank because in the instructions Bankign is supposed to only process user requests. 
+        The, from the bank other functions are called inside of UIM, account, client and transactions.
     
+        Can you guys create a "scanInput(String money)" that checks if the input is: 
+            1. A number
+            2. Can be converted into a money transaction
+                if not, can it be changed by the code so that it could be converted into double i.e. 10.1445525 becomes 10.14 or something
+                remember, the scanInput always returns a STRING, it only CHECKS if the user put in a correct value.
+                
     */
     
 
@@ -46,48 +55,17 @@ public class Banking {
                     break;
                     
                 case 3:
-                    System.out.println("You selected: Make a Deposit\n");
-                    
-                    //needs to get clientId from console
-                    System.out.println(UserInputManager.retrieveClientId());
-                    //needs to get AccountNumber from console, must belong to client
-                    
-                    //gets amount of transaction from console
-                    
-                    //creates the transaction
-                    
-                    //adds the transaction to list of transactions
-                    
-                    //updates the account's balance
-                    
-                    //output in this form: accountType(accountNumber): balance$
-                    
-                  
+                    bank.createTransaction("deposit");                   
                     break;
+                    
                 case 4:
-                    System.out.println("You selected: Make a Withdrawal\n");
-                    //get clientId from console
-                    System.out.println(UserInputManager.retrieveClientId());
-                    //get accountNumber from console, must belong to selected client
-                    
-                    //retrieve amount of transaction from console
-                    
-                    //create the transaction
-                    
-                    //add transaction to the account's list of transactions
-                    
-                    //update account balance
-                    
-                    //output in this form: accountType(accountNum): balance
-                    
+                    bank.createTransaction("withdrawal");  
                     break;
+                    
                 case 5:
-                    System.out.println("You selected: List Account Transactions\n");
-                    //output transactions in this form: -transactionType of transactionAmount
-                    
-                    // and this form: accountType(accountNum): balance
-                           
+                    bank.listAccountTransactions();         
                     break;
+                    
                 case 6: //Daniel
                     bank.displayClientList();  
                     break;
