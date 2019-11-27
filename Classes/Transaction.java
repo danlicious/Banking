@@ -9,7 +9,7 @@ public class Transaction implements ITransaction{
    @Override
     public String toString(){
        
-      String TransText = type + "of" + amount;  
+      String TransText = type + " of " + amount;  
       return TransText;
     }
 }
