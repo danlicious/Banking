@@ -7,7 +7,7 @@ public class Transaction implements ITransaction{  //Marius
    private double amount;
    
    @Override
-    public String toString(){
+    public String toString(){  //Marius
        
       String TransText = type + " of " + amount;  
       return TransText;
