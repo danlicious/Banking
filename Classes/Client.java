@@ -3,7 +3,7 @@ import java.util.ArrayList;
 
 public class Client implements IClient {
     
-    int id;
+    private int id;
     private String firstName;
     private String lastName;
     private ArrayList<Account> accountList;
