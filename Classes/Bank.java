@@ -2,33 +2,71 @@ package banking;
 import java.util.ArrayList;
 public class Bank implements IBank{
     
-    //Daniel - I put conditions to protect the bank properties
+    //Daniel - I put conditions to protect 0the bank properties
     private static final String bankNumber = "123456789"; 
     private static final String address = "821 Sainte Croix Ave";
     private static ArrayList<Client> clientList = new ArrayList<>();
+    private static final UserInputManager uim = new UserInputManager();
     
-    @Override
-    public void addClient(Client newClient) {
+    
+    public boolean createClient(){
         
-        System.out.println("[ DEV Adding Client to the list of clients ]\n");
-        clientList.add(newClient.getId()-1,newClient);
-        System.out.println("DEV " + clientList.toString());
+        System.out.println("Creating a new Client...");
+        Client newClient = uim.retrieveClientInfo();
+        addClient(newClient);
+        return true;
         
     }
+    
+    public boolean createAccount(){
 
+        if(getClientList().size() > 0){
+                        System.out.println("(DEVELOPMENT) Creating a new Account...");
+                        Client client = getClient(uim.retrieveClientId());
+                        System.out.println("(DEVELOPMENT) Client: " + client.toString());
+                        Account account = uim.retrieveAccountType(client);
+                        client.addAccount(account);
+                     
+                    }else{
+                        System.err.println("Sorry! We don't have any clients yet.\n"); 
+                    }
+        return true;        
+    }
+    
+    public boolean listClientAccounts(){ //Daniel
+        
+        Client client = getClient(uim.retrieveClientId());
+        client.displayAccounts();
+        
+        return true;
+    }
+  
+    @Override //Farhan
+    public void addClient(Client newClient) {
+        
+        clientList.add(newClient.getId()-1,newClient);
+        System.out.println("\n(DEVELOPMENT) Added client " + clientList.toString());
+        
+    }
+    
     @Override
     public void displayClientAccounts(int clientId) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    @Override
+    @Override //Daniel
     public void displayClientList() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        
+        System.out.println("\nList of current clients:");
+        for(int i=0; i < clientList.size(); i++){
+            System.out.println(clientList.get(i).toString());
+        }
+        
     }
 
-    @Override
+    @Override//Daniel
     public Client getClient(int id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return clientList.get(id-1);
     }
 
     @Override
@@ -48,7 +86,6 @@ public class Bank implements IBank{
         return clientList;
     }
     
-    //Daniel - I am not sure about this yet.
     public static void setClientList(ArrayList<Client> clientList) {
         Bank.clientList = clientList;
     }

@@ -7,7 +7,7 @@ public class Client implements IClient {
     private String firstName;
     private String lastName;
     private ArrayList<Account> accountList;
-    private static int counter = 0;
+    private static int counter = 1;
 
     public Client() {
         this.accountList = new ArrayList<>();
@@ -17,8 +17,8 @@ public class Client implements IClient {
         this.accountList = new ArrayList<>();
         this.firstName = firstName;
         this.lastName = lastName;
-        counter++;
         this.id = counter;
+        counter++;
     }
     
     public int getId() {
@@ -58,21 +58,24 @@ public class Client implements IClient {
     }
     
 
-    @Override
+    @Override//Daniel
     public void addAccount(Account newAccount) {
         
         this.accountList.add(newAccount);
+        System.out.println("\n(DEVELOPMENT) New account [" + newAccount.toString() + "]added for [" + this.toString() + "] ");
     }
 
-    @Override
+    @Override//Daniel
     public void displayAccounts() {
-       
+        
+        System.out.println("\nAccounts for " + this.lastName + ", " + this.firstName + " (" + this.id + "):");
         accountList.forEach((i) -> {
             System.out.println(i);
         });
+        
     }
 
-    @Override
+    @Override//Daniel
     public Account getAccount(int accountNumber) {
         for (int i = 0; i < accountList.size(); i++) {
             if(accountNumber == accountList.get(i).getAccountNumber()){
@@ -81,10 +84,10 @@ public class Client implements IClient {
         }
         return null;
     }
-    @Override
+    @Override //Marius
     public String toString(){
         
-    String clientObj = lastName + ", " + firstName + "(" + id + ")";
+    String clientObj = "(" + id + ") " + lastName + ", " + firstName ;
     
     return clientObj;
     }

@@ -9,7 +9,7 @@ package banking;
 public interface IBank {
 
     /**
-     * Add the new Client element to the clientList
+     * [DONE] Add the new Client element to the clientList
      * 
      */
     void addClient(Client newClient);

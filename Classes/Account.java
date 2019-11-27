@@ -5,30 +5,22 @@ import java.util.ArrayList;
 
 public class Account{
     
-  private int accountNumber;
-    protected int counter = 10000;
+    protected static int counter = 1;   
+    private int accountNumber;
+    protected Client owner;
+    protected String type; 
     protected double balance;
     protected ArrayList<Transaction> transactions;
-    protected Client owner;
-    protected String type;
-  
     
-
-
-    public Account(int accountNumber, double balance, ArrayList<Transaction> transactions, Client owner, String type) {
-        this.accountNumber = accountNumber;
-        this.balance = balance;
-        this.transactions = transactions;
+  
+    public Account(Client owner, String type) {
+        this.accountNumber = counter;
         this.owner = owner;
         this.type = type;
-        
+        this.balance = 0;
+        counter++;
     }
     
-    
-    public Account() {
-        this.accountNumber = counter++;
-        this.transactions = new ArrayList<>();
-    }
     
     public int getAccountNumber() {
         return accountNumber;
@@ -75,16 +67,10 @@ public class Account{
     
         this.balance = this.balance+d;
       
-        
         // Create the corresponding Transaction element and add it to the transactions list
         
         return this.balance;
-        
-       
-  
-     
-    
-        
+           
     }
     public void displayAllTransactions(){
       
@@ -98,16 +84,13 @@ public class Account{
     }
         
    @Override
-    public String toString(){
+    public String toString(){ //Daniel
       
-      String returnAccount = type + "(" + counter + ")" + ": " + balance + " $";  
-        return returnAccount;
-         /**
-     * return the string that you want to output when printing the object
-     */
-      
-      
+      String accountInfo = type + "(" + accountNumber + "): " + balance + "$";  
+      return accountInfo;
+         
     }
+    
     public double withdrawal(double w){
           
        this.balance = this.balance - w;
