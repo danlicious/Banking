@@ -93,7 +93,7 @@ public class Bank implements IBank {
         if (getClientList().size() > 0) {
             Client client = getClient(uim.retrieveClientId());
             if (client.getAccountList().size() > 0) {
-                System.out.println("(DEVELOPMENT) Listing accounts...");
+                System.out.println("(DEVELOPMENT) Accdount ID needed for listing.");
 
                 
                 //output transactions in this form: -transactionType of transactionAmount
