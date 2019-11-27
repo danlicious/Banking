@@ -84,7 +84,7 @@ public class Client implements IClient {
     @Override
     public String toString(){
         
-    String clientObj = firstName + " " + lastName + " " + "[" + id + "]";
+    String clientObj = lastName + ", " + firstName + "(" + id + ")";
     
     return clientObj;
     }
