@@ -3,7 +3,7 @@ package banking;
 import java.util.ArrayList;
 
 
-public class Account{
+public class Account{  //Marius
     
     protected static int counter = 1;   
     private int accountNumber;
@@ -13,7 +13,7 @@ public class Account{
     protected ArrayList<Transaction> transactions;
     
   
-    public Account(Client owner, String type) {
+    public Account(Client owner, String type) {  //Marius
         this.accountNumber = counter;
         this.owner = owner;
         this.type = type;
@@ -22,48 +22,48 @@ public class Account{
     }
     
     
-    public int getAccountNumber() {
+    public int getAccountNumber() {  //Marius
         return accountNumber;
     }
     
-    public void setAccountNumber(int accountNumber) {
+    public void setAccountNumber(int accountNumber) {  //Marius
         this.accountNumber = accountNumber;
     }
 
-    public int getCounter() {
+    public int getCounter() {  //Marius
         return counter;
     }
 
-    public void setCounter(int counter) {
+    public void setCounter(int counter) {  //Marius
         this.counter = counter;
     }
 
-    public double getBalance() {
+    public double getBalance() {  //Marius
         return balance;
     }
 
-    public void setBalance(double balance) {
+    public void setBalance(double balance) {  //Marius
         this.balance = balance;
     }
 
-    public Client getOwner() {
+    public Client getOwner() {  //Marius
         return owner;
     }
 
-    public void setOwner(Client owner) {
+    public void setOwner(Client owner) {  //Marius
         this.owner = owner;
     }
 
-    public String getType() {
+    public String getType() {  //Marius
         return type;
     }
 
-    public void setType(String type) {
+    public void setType(String type) {  //Marius
         this.type = type;
     }
     
     
-    double deposit(double d){
+    double deposit(double d){  //Marius
     
         this.balance = this.balance+d;
       
@@ -72,26 +72,26 @@ public class Account{
         return this.balance;
            
     }
-    public void displayAllTransactions(){
+    public void displayAllTransactions(){  //Marius
       
       transactions.forEach((i) -> {
           System.out.println(i);
       });
     }
-    public ArrayList<Transaction> getTransactions(){
+    public ArrayList<Transaction> getTransactions(){  //Marius
       return null;
                      
     }
         
    @Override
-    public String toString(){ //Daniel
+    public String toString(){  //Marius
       
       String accountInfo = type + "(" + accountNumber + "): " + balance + "$";  
       return accountInfo;
          
     }
-    
-    public double withdrawal(double w){
+     
+    public double withdrawal(double w){  //Marius
           
        this.balance = this.balance - w;
        
