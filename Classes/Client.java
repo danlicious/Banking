@@ -1,7 +1,7 @@
 package banking;
 import java.util.ArrayList;
 
-public class Client implements IClient {
+public class Client implements IClient {  //Marius
     
     private int id;
     private String firstName;
@@ -9,11 +9,11 @@ public class Client implements IClient {
     private ArrayList<Account> accountList;
     private static int counter = 1;
 
-    public Client() {
+    public Client() {  //Marius
         this.accountList = new ArrayList<>();
     } 
 
-    public Client(String firstName, String lastName) {
+    public Client(String firstName, String lastName) {  //Marius
         this.accountList = new ArrayList<>();
         this.firstName = firstName;
         this.lastName = lastName;
@@ -21,39 +21,39 @@ public class Client implements IClient {
         counter++;
     }
     
-    public int getId() {
+    public int getId() {  //Marius
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(int id) {  //Marius
         this.id = id;
     }
 
-    public String getFirstName() {
+    public String getFirstName() {  //Marius
         return firstName;
     }
 
-    public void setFirstName(String firstName) {
+    public void setFirstName(String firstName) {  //Marius
         this.firstName = firstName;
     }
 
-    public String getLastName() {
+    public String getLastName() {  //Marius
         return lastName;
     }
 
-    public void setLastName(String lastName) {
+    public void setLastName(String lastName) {  //Marius
         this.lastName = lastName;
     }
 
-    public ArrayList<Account> getAccountList() {
+    public ArrayList<Account> getAccountList() {  //Marius
         return accountList;
     }
 
-    public int getCounter() {
+    public int getCounter() {  //Marius
         return counter;
     }
 
-    public void setCounter(int counter) {
+    public void setCounter(int counter) {  //Marius
         Client.counter = counter;
     }
     
