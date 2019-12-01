@@ -9,10 +9,7 @@ public class Client implements IClient {  //Marius
     private ArrayList<Account> accountList;
     private static int counter = 1;
 
-    public Client() {  //Marius
-        this.accountList = new ArrayList<>();
-    } 
-
+ 
     public Client(String firstName, String lastName) {  //Marius
         this.accountList = new ArrayList<>();
         this.firstName = firstName;
@@ -22,7 +19,7 @@ public class Client implements IClient {  //Marius
     }
     
     public int getId() {  //Marius
-        return id;
+        return this.id;
     }
 
     public void setId(int id) {  //Marius
@@ -30,7 +27,7 @@ public class Client implements IClient {  //Marius
     }
 
     public String getFirstName() {  //Marius
-        return firstName;
+        return this.firstName;
     }
 
     public void setFirstName(String firstName) {  //Marius
@@ -38,7 +35,7 @@ public class Client implements IClient {  //Marius
     }
 
     public String getLastName() {  //Marius
-        return lastName;
+        return this.lastName;
     }
 
     public void setLastName(String lastName) {  //Marius
@@ -46,21 +43,21 @@ public class Client implements IClient {  //Marius
     }
 
     public ArrayList<Account> getAccountList() {  //Marius
-        return accountList;
+        return this.accountList;
     }
 
     public int getCounter() {  //Marius
-        return counter;
+        return this.counter;
     }
 
     public void setCounter(int counter) {  //Marius
-        Client.counter = counter;
+        this.counter = counter;
     }
     
 
     @Override//Daniel
     public void addAccount(Account newAccount) {
-        
+        newAccount.setOwner(this);
         this.accountList.add(newAccount);
         System.out.println("\n(DEVELOPMENT) New account [" + newAccount.toString() + "]added for [" + this.toString() + "] ");
     }
@@ -68,8 +65,8 @@ public class Client implements IClient {  //Marius
     @Override//Daniel
     public void displayAccounts() {
         
-        System.out.println("\nAccounts for " + this.lastName + ", " + this.firstName + " (" + this.id + "):");
-        accountList.forEach((i) -> {
+        System.out.println("\nAccounts for " + this.toString() + ":\n");
+        this.accountList.forEach((i) -> {
             System.out.println(i);
         });
         
@@ -77,18 +74,19 @@ public class Client implements IClient {  //Marius
 
     @Override//Daniel
     public Account getAccount(int accountNumber) {
-        for (int i = 0; i < accountList.size(); i++) {
-            if(accountNumber == accountList.get(i).getAccountNumber()){
-                return accountList.get(i);
+        for (int i = 0; i < this.accountList.size(); i++) {
+            if(accountNumber == this.accountList.get(i).getAccountNumber()){
+                return this.accountList.get(i);
             }
         }
         return null;
     }
+    
     @Override //Marius
     public String toString(){
         
-    String clientObj = "(" + id + ") " + lastName + ", " + firstName ;
-    
-    return clientObj;
+        String clientObj = "(" + this.id + ") " + this.lastName + ", " + this.firstName ;
+
+        return clientObj;
     }
 }

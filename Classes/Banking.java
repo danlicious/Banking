@@ -1,5 +1,5 @@
 package banking;
-import java.util.Scanner;
+
 public class Banking {
 
     /* NOTES
@@ -40,12 +40,13 @@ public class Banking {
     private static String validInput; //Final and (if needed) transformed input.
     private static String sample;   //used for substrings.
     
-    private static Scanner scan = new Scanner(System.in);
     
-    
-     public static String scanInput(String desiredReturn) { //Daniel: When the console needs to retrieve information, this code will prevent unwanted inputs.
+   public static String scanInput(String desiredReturn) { //Daniel: When the console needs to retrieve information, this code will prevent unwanted inputs.
+
+        
+        
         do {//Until the appropriate conditions are met, scanned values will not be returned.
-            userInput = scan.nextLine();
+            userInput = UserInputManager.Scanner();
             inputLength = userInput.length();
             counter = 0;
             valid = false;
@@ -56,11 +57,14 @@ public class Banking {
                 case "stop":
                     System.err.println("INPUT WAS 'stop' (STOPPING THE PROGRAM)");
                     System.exit(0);
+                    break;
 
                 //Daniel    
-                case "":
-                    System.err.println("Nothing happened.\n");
-                    break;
+                
+                    case "":
+                    //System.err.println("Nothing happened.\n");   //Appears randomly in code --removed for now 
+                    break; 
+                
 
                 default:
                     switch (desiredReturn) {
@@ -159,7 +163,11 @@ public class Banking {
         } while (valid == false);
         return validInput;
     }
-     public static String autoCapitalize(String initialString) {
+
+    //Daniel 
+    //@RR 
+    //TODO move to banking
+    private static String autoCapitalize(String initialString) {
         //This code does two things: 1. Removes uneeded spaces and hypens 2. Capitalizes names (even ones made of two parts)
         initialString = " " + initialString + " ";
         String transformedString = "";
@@ -193,6 +201,8 @@ public class Banking {
         }
         return transformedString;
     }
+    
+    
 
     public static void main(String[] args) {
         
@@ -216,10 +226,10 @@ public class Banking {
                 case 3:
                     bank.createTransaction("deposit");    
                     //@RR
-                    int clientId = 1;
+                    /*int clientId = 1;
                     int accountId = 1;
                     Account a = bank.getClientAccount(clientId, accountId);
-                    a.deposit(500.00);
+                    a.deposit(500.00);*/
                     break;
                     
                 case 4:
@@ -235,14 +245,11 @@ public class Banking {
                     break;
                     
                 case 7: //Daniel
-                    bank.listClientAccounts();
+                    bank.displayClientAccounts(UserInputManager.retrieveClientId());
                     break;
             }
             userOption = UserInputManager.retrieveUserOption();
         }
 
     }
-
-    
 }
-

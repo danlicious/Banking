@@ -4,27 +4,13 @@ import java.util.Scanner;
 
 public class UserInputManager {
 
-    private static boolean valid; //Is the input usable by the calling method?
-    private static int inputLength;
-    private static int counter; //used for counting
-    private static String userInput;
-    private static String validInput; //Final and (if needed) transformed input.
-    private static String sample;   //used for substrings.
-    private static final Scanner scan = new Scanner(System.in);
-
     
-
-    public static String getScan(){
-        userInput = scan.nextLine();
-        return userInput;
-    }
+    private static final Scanner scan = new Scanner(System.in);
     
     //@RR 
-    //TODO move to banking   --done?
- 
+    //TODO move to banking
     
-    
-    
+
     //Farhan, Daniel, Marius
     public static int retrieveUserOption() {
         String option1 = "[1] Add a new Client";
@@ -41,6 +27,13 @@ public class UserInputManager {
         return userOption;
     }
 
+    public static String Scanner(){
+        
+       String userInput = scan.nextLine();
+       return userInput;
+    }
+    
+    
     //Farhan
     public static Client retrieveClientInfo() {
 
@@ -62,17 +55,17 @@ public class UserInputManager {
 
     }
 
-    public static int retrieveAccountNumber() {
+    public static int retrieveAccountNumber() {  //Marius
 
-        System.out.print("\nPlease enter the account number of the desired account: ");
+        
+        System.out.print("\n\nPlease enter the account number of the desired account: ");
         int accountNum = scan.nextInt();
         if (accountNum < 1) {
-            System.out.println("This account number is invalid, please try again");
+            System.err.println("This account number is invalid, please try again");
             retrieveAccountNumber();
         } else if (accountNum > Account.getCounter()) {
-            System.out.println("This account number is invalid, please try again");
+            System.err.println("This account number is invalid, please try again");
             retrieveAccountNumber();
-
         }
         return accountNum ;
     }
@@ -107,7 +100,6 @@ public static Account retrieveAccountType(Client owner) {
 
     public static double retrieveTransactionAmount() {
         System.out.print("Please enter the desired amount for the current transaction: ");
-        retrieveTransactionAmount();
         double transAmount = scan.nextDouble();
         return transAmount;
     }

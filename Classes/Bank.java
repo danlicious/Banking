@@ -8,12 +8,12 @@ public class Bank implements IBank {
     private static final String bankNumber = "123456789";
     private static final String address = "821 Sainte Croix Ave";
     private static ArrayList<Client> clientList = new ArrayList<>();
-    private static final UserInputManager uim = new UserInputManager();
+    
 
     public boolean createClient() {
 
         System.out.println("(DEVELOPMENT) Creating a new Client...");
-        Client newClient = uim.retrieveClientInfo();
+        Client newClient = UserInputManager.retrieveClientInfo();
         addClient(newClient);
         return true;
 
@@ -23,9 +23,9 @@ public class Bank implements IBank {
 
         if (getClientList().size() > 0) {
             System.out.println("(DEVELOPMENT) Creating a new Account...");
-            Client client = getClient(uim.retrieveClientId());
+            Client client = getClient(UserInputManager.retrieveClientId());
             System.out.println("(DEVELOPMENT) Client: " + client.toString());
-            Account account = uim.retrieveAccountType(client);
+            Account account = UserInputManager.retrieveAccountType(client);
             client.addAccount(account);
 
         } else {
@@ -34,67 +34,68 @@ public class Bank implements IBank {
         return true;
     }
 
-    public boolean listClientAccounts() { //Daniel
-
-        if (getClientList().size() > 0) {
-            Client client = getClient(uim.retrieveClientId());
-            client.displayAccounts();
-        } else {
-            System.err.println("Sorry! We don't have any clients yet.\n");
-        }
-
-        return true;
-    }
-
     public boolean createTransaction(String type) { //Daniel
 
         if (getClientList().size() > 0) {
-            Client client = getClient(uim.retrieveClientId());
+            Client client = getClient(UserInputManager.retrieveClientId());
             if (client.getAccountList().size() > 0) {
-                switch (type) {
-                    case "deposit":
-                        System.out.println("(DEVELOPMENT) Making a deposit...");
+                            
+                        client.displayAccounts();                      
+                        int accNum = UserInputManager.retrieveAccountNumber();
+                        Account acc = client.getAccount(accNum);
+                        
+                        if(acc == null){
+                            createTransaction(type);
+                        }else{
+                            double accBalance = acc.getBalance();
+                            System.out.println("Your balance is " + Math.round(accBalance*100)/100.0 + "$\n");
+                            double amount = UserInputManager.retrieveTransactionAmount();
+                            Transaction t = new Transaction(type, amount);
+                            System.out.println("Transaction: " + t + "\n");
+                            switch (type) {                                                         
+                                case "deposit":                                      
+                                        
+                                    acc.setBalance(acc.getBalance() + amount);
+                                    
+                                    break;
 
-                        
-                        //needs to get AccountNumber from console, must belong to client
-                        //gets amount of transaction from console
-                        //creates the transaction
-                        //adds the transaction to list of transactions
-                        //updates the account's balance
-                        //output in this form: accountType(accountNumber): balance$
-                        
-                        
-                        break;
-                    case "withdrawal":
-                        System.out.println("(DEVELOPMENT) Making a withdrawal...");
-                        
-                        
-                        //get accountNumber from console, must belong to selected client
-                        //retrieve amount of transaction from console
-                        //create the transaction
-                        //add transaction to the account's list of transactions
-                        //update account balance
-                        //output in this form: accountType(accountNum): balance
-                        
-                        
-                        break;
-                }
+                                case "withdrawal":
+
+                                    acc.setBalance(acc.getBalance() - amount);
+
+                                    break;
+
+                            }
+                            
+                            acc.getTransactions().add(t);
+                            System.out.println("Your new balance for this account is: \n" + acc);
+                            
+                        }
+                                                                        
             } else {
                 System.err.println("Sorry! " + client + " does not have an account yet.\n");
             }
         } else {
             System.err.println("Sorry! We don't have any clients yet.\n");
         }
-        return true;
+        return false;
     }
 
-    public boolean listAccountTransactions() {//Daniel
+    public boolean listAccountTransactions() {//Daniel  //Marius
 
         if (getClientList().size() > 0) {
-            Client client = getClient(uim.retrieveClientId());
+            Client client = getClient(UserInputManager.retrieveClientId());
             if (client.getAccountList().size() > 0) {
-                System.out.println("(DEVELOPMENT) Accdount ID needed for listing.");
-
+                System.out.println("(DEVELOPMENT) Account ID needed for listing.");
+                        client.displayAccounts();                      
+                        int accNum = UserInputManager.retrieveAccountNumber();
+                        Account acc = client.getAccount(accNum);
+                        
+                        if(acc == null){
+                            listAccountTransactions();
+                        }else{                        
+                        System.out.println("\nDisplaying transaction history of account: [" + acc + "]\n" + acc.getTransactions());                       
+                        }
                 
                 //output transactions in this form: -transactionType of transactionAmount
                 // and this form: accountType(accountNum): balance
@@ -120,7 +121,13 @@ public class Bank implements IBank {
 
     @Override
     public void displayClientAccounts(int clientId) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+         if (getClientList().size() > 0) {
+            Client client = getClient(clientId);
+            client.displayAccounts();
+        } else {
+            System.err.println("Sorry! We don't have any clients yet.\n");
+        }
+    
     }
 
     @Override //Daniel
@@ -140,7 +147,11 @@ public class Bank implements IBank {
 
     @Override
     public Account getClientAccount(int clientId, int accountNumber) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Client c = this.getClient(clientId);
+        if(c != null){
+            return c.getAccount(accountNumber);
+        }
+        return null;
     }
 
     public static String getBankNumber() {

@@ -5,17 +5,20 @@ import java.util.ArrayList;
 
 public class Account{  //Marius
     
-    protected static int counter = 1;   
+    private static int counter = 0;   
     private int accountNumber;
     protected Client owner;
-    protected String type; 
+    private String type; 
     protected double balance;
     protected ArrayList<Transaction> transactions;
+
+    public Account() {
+    }
     
-  
-    public Account(Client owner, String type) {  //Marius
-        this.accountNumber = counter;
-        this.owner = owner;
+    public Account(String type) {  //Marius
+        transactions = new ArrayList<>();
+        this.accountNumber = counter+1;
+        this.owner = null;
         this.type = type;
         this.balance = 0;
         counter++;
@@ -23,15 +26,15 @@ public class Account{  //Marius
     
     
     public int getAccountNumber() {  //Marius
-        return accountNumber;
+        return this.accountNumber;
     }
     
     public void setAccountNumber(int accountNumber) {  //Marius
         this.accountNumber = accountNumber;
     }
 
-    public int getCounter() {  //Marius
-        return counter;
+    public static int getCounter() {  //Marius
+        return Account.counter;
     }
 
     public void setCounter(int counter) {  //Marius
@@ -39,7 +42,8 @@ public class Account{  //Marius
     }
 
     public double getBalance() {  //Marius
-        return balance;
+      
+        return this.balance;
     }
 
     public void setBalance(double balance) {  //Marius
@@ -47,7 +51,7 @@ public class Account{  //Marius
     }
 
     public Client getOwner() {  //Marius
-        return owner;
+        return this.owner;
     }
 
     public void setOwner(Client owner) {  //Marius
@@ -66,39 +70,41 @@ public class Account{  //Marius
     double deposit(double d){  //Marius
     
         this.balance = this.balance+d;
-      
-        // Create the corresponding Transaction element and add it to the transactions list
+        Transaction tr = new Transaction("Deposit", d);
+        this.transactions.add(tr);
         
-        return this.balance;
+        return balance;
            
     }
     public void displayAllTransactions(){  //Marius
       
-      transactions.forEach((i) -> {
-          System.out.println(i);
-      });
+        for (Transaction transaction : this.transactions) {
+            System.out.println(transaction);
+        }
     }
-    public ArrayList<Transaction> getTransactions(){  //Marius
-      return null;
-                     
-    }
+      //Marius
+
+    public ArrayList<Transaction> getTransactions() { //Marius
+        return this.transactions;
+    }                                          
+    
         
    @Override
-    public String toString(){  //Marius
+    public String toString(){ //Marius
       
-      String accountInfo = type + "(" + accountNumber + "): " + balance + "$";  
+     
+      String accountInfo = this.type + "(" + this.accountNumber + "): " + Math.round(this.balance*100)/100.0 + "$";  //Math.round function to round at 2 decimals after point
       return accountInfo;
          
     }
-     
+    
     public double withdrawal(double w){  //Marius
           
        this.balance = this.balance - w;
-       
+       Transaction tr = new Transaction ("Withdrawal", w);
+       this.transactions.add(tr);
      
-     // Create the corresponding Transaction element and add it to the transactions list
-      
-     return this.balance;
+       return balance;
      
     
     }
