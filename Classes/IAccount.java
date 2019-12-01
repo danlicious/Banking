@@ -12,7 +12,7 @@ public interface IAccount {
 
     /**
      * Update the account balance with the amount of the deposit
-     * Create the corresponding Transaction object and add it to the transactions list
+     * Create the corresponding Transaction element and add it to the transactions list
      * 
      * return the new balance
      */
@@ -24,7 +24,12 @@ public interface IAccount {
      */
     void displayAllTransactions();
 
-    
+    /**
+     * Update the account balance with the amount of the withdrawl
+     * Create the corresponding Transaction element and add it to the transactions list
+     * 
+     * return the new balance
+     */
     ArrayList<Transaction> getTransactions();
 
     /**

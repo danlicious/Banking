@@ -2,111 +2,108 @@ package banking;
 
 import java.util.ArrayList;
 
+public class Account {
 
-public class Account{  //Marius
-    
-    private static int counter = 0;   
+    protected static int counter = 1;
     private int accountNumber;
     protected Client owner;
-    private String type; 
+    protected String type;
     protected double balance;
     protected ArrayList<Transaction> transactions;
 
-    public Account() {
-    }
-    
-    public Account(String type) {  //Marius
-        transactions = new ArrayList<>();
-        this.accountNumber = counter+1;
-        this.owner = null;
+    public Account(Client owner, String type) {
+        this.transactions = new ArrayList<>();
+        this.accountNumber = counter;
+        this.owner = owner;
         this.type = type;
         this.balance = 0;
         counter++;
     }
-    
-    
-    public int getAccountNumber() {  //Marius
-        return this.accountNumber;
+
+    public double deposit(double d) {
+
+        Transaction transaction = new Transaction();
+        transaction.setType("deposit");
+        transaction.setAmount(d);
+        transactions.add(transaction);
+        this.balance = this.balance + d;
+        return this.balance;
+        
     }
-    
-    public void setAccountNumber(int accountNumber) {  //Marius
+
+    public void displayAllTransactions() {
+
+        transactions.forEach((i) -> {
+            System.out.println(i);
+        });
+    }
+
+    @Override
+    public String toString() { //Daniel
+
+        String accountInfo = type + "(" + accountNumber + "): " + balance + "$";
+        return accountInfo;
+
+    }
+
+    public double withdrawal(double w) {
+
+        Transaction transaction = new Transaction();              
+        transaction.setType("withdrawal");
+        transaction.setAmount(w);
+        this.transactions.add(transaction);
+        this.balance = this.balance - w;
+        return this.balance;
+
+    }
+
+    public int getAccountNumber() {
+        return accountNumber;
+    }
+
+    public void setAccountNumber(int accountNumber) {
         this.accountNumber = accountNumber;
     }
 
-    public static int getCounter() {  //Marius
-        return Account.counter;
+    public int getCounter() {
+        return counter;
     }
 
-    public void setCounter(int counter) {  //Marius
+    public void setCounter(int counter) {
         this.counter = counter;
     }
 
-    public double getBalance() {  //Marius
-      
-        return this.balance;
+    public double getBalance() {
+        return balance;
     }
 
-    public void setBalance(double balance) {  //Marius
+    public void setBalance(double balance) {
         this.balance = balance;
     }
 
-    public Client getOwner() {  //Marius
-        return this.owner;
+    public Client getOwner() {
+        return owner;
     }
 
-    public void setOwner(Client owner) {  //Marius
+    public void setOwner(Client owner) {
         this.owner = owner;
     }
 
-    public String getType() {  //Marius
+    public String getType() {
         return type;
     }
 
-    public void setType(String type) {  //Marius
+    public void setType(String type) {
         this.type = type;
     }
-    
-    
-    double deposit(double d){  //Marius
-    
-        this.balance = this.balance+d;
-        Transaction tr = new Transaction("Deposit", d);
-        this.transactions.add(tr);
-        
-        return balance;
-           
-    }
-    public void displayAllTransactions(){  //Marius
-      
-        for (Transaction transaction : this.transactions) {
-            System.out.println(transaction);
-        }
-    }
-      //Marius
 
-    public ArrayList<Transaction> getTransactions() { //Marius
-        return this.transactions;
-    }                                          
-    
-        
-   @Override
-    public String toString(){ //Marius
-      
-     
-      String accountInfo = this.type + "(" + this.accountNumber + "): " + Math.round(this.balance*100)/100.0 + "$";  //Math.round function to round at 2 decimals after point
-      return accountInfo;
-         
+    public ArrayList<Transaction> getTransactions() {
+        return null;
+
     }
-    
-    public double withdrawal(double w){  //Marius
-          
-       this.balance = this.balance - w;
-       Transaction tr = new Transaction ("Withdrawal", w);
-       this.transactions.add(tr);
-     
-       return balance;
-     
-    
+
+    public void setTransactions(ArrayList<Transaction> transactions) {
+        this.transactions = transactions;
     }
+
 }
-

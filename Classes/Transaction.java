@@ -1,36 +1,35 @@
 package banking;
 
 
-public class Transaction implements ITransaction{  //Marius
+public class Transaction implements ITransaction{
   
    private String type;
    private double amount;
+   
+   public Transaction(){
+   
+   }
 
-   //@RR
-    public Transaction(String type, double amount) {  //Marius
-        this.type = type;
-        this.amount = amount;
-    }      
-
-    public String getType() {  //Marius
-        return this.type;
+    public String getType() {
+        return type;
     }
 
-    public void setType(String type) {  //Marius
+    public void setType(String type) {
         this.type = type;
     }
 
-    public double getAmount() {  //Marius
-        return this.amount;
+    public double getAmount() {
+        return amount;
     }
 
-    public void setAmount(double amount) {  //Marius
+    public void setAmount(double amount) {
         this.amount = amount;
     }
-    @Override
-    public String toString(){  //Marius
+   
+   @Override
+    public String toString(){
        
-      String TransText = this.type + " of " + Math.round(this.amount*100)/100.0 + "$";  
+      String TransText = type + " of " + amount;  
       return TransText;
     }
 }

@@ -4,12 +4,72 @@ import java.util.Scanner;
 
 public class UserInputManager {
 
-    
+    private static boolean valid; //Is the input usable by the calling method?
+    private static int inputLength;
+    private static int counter; //used for counting
+    private static String userInput;
+    private static String validInput; //Final and (if needed) transformed input.
+    private static String sample;   //used for substrings.
     private static final Scanner scan = new Scanner(System.in);
-    
-    //@RR 
-    //TODO move to banking
-    
+
+    public static int retrieveAccountNumber() {
+
+        System.out.print("\nPlease enter the account number of the desired account: ");
+        int accountNum = scan.nextInt();
+        return accountNum;
+    }
+
+    public static Account retrieveAccountType(Client owner) {
+
+        String type1 = "[1] Checking";
+        String type2 = "[2] Savings";
+        System.out.println("\nPlease enter the desired type of account.");
+        System.out.println("=========================================================");
+        System.out.printf("%n%-32s%-32s%n%n=========================================================%nSelection: ", type1, type2);
+
+        int accountType = scan.nextInt();
+
+        Account account = null;
+
+        if(accountType ==1 ){
+            account = new CheckingAccount(owner, "Checking");
+        }else if(accountType ==2){
+            account = new CheckingAccount(owner, "Savings");
+        }else{
+                account = null; 
+        }
+        return account;
+    }
+
+    //Farhan
+    public static int retrieveClientId() {
+
+        System.out.print("\nPlease enter the client's id: ");
+        int id = scan.nextInt();
+        return id;
+
+    }
+
+    //Farhan
+    public static Client retrieveClientInfo() {
+
+        Client client = new Client();
+        while(scan.nextLine().isEmpty()){
+        System.out.print("\nWhat is the client's first name? ");
+        client.setFirstName(scan.nextLine());
+        System.out.print("What is the client's last name? ");
+        client.setLastName(scan.nextLine());
+        break;
+        }
+        
+        return client;
+    }
+
+    public static double retrieveTransactionAmount() {
+        System.out.print("Please enter the desired amount for the current transaction: ");
+        double amount = scan.nextDouble();
+        return amount;
+    }
 
     //Farhan, Daniel, Marius
     public static int retrieveUserOption() {
@@ -23,85 +83,8 @@ public class UserInputManager {
         System.out.println("\nTo perform an action, enter its corresponding number.");
         System.out.println("=========================================================");
         System.out.printf("%n%-32s%-32s%n%-32s%-32s%n%-32s%-32s%n%-32s%n%n=========================================================%nSelection: ", option1, option2, option3, option4, option5, option6, option7);
-        int userOption = Integer.parseInt(Banking.scanInput("option"));
+        int userOption = scan.nextInt();
         return userOption;
-    }
-
-    public static String Scanner(){
-        
-       String userInput = scan.nextLine();
-       return userInput;
-    }
-    
-    
-    //Farhan
-    public static Client retrieveClientInfo() {
-
-        //TODO
-        System.out.print("\nWhat is the client's first name? ");
-        String firstName = Banking.scanInput("name");//Scanner scan = new Scanner(System.in); scan.next();
-        System.out.print("What is the client's last name? ");
-        String lastName = Banking.scanInput("name");
-        Client client = new Client(firstName, lastName);
-        return client;
-    }
-
-    //Farhan
-    public static int retrieveClientId() {
-
-        System.out.print("\nPlease enter the client's id: ");
-        int id = Integer.parseInt(Banking.scanInput("clientId"));
-        return id;
-
-    }
-
-    public static int retrieveAccountNumber() {  //Marius
-
-        
-        System.out.print("\n\nPlease enter the account number of the desired account: ");
-        int accountNum = scan.nextInt();
-        if (accountNum < 1) {
-            System.err.println("This account number is invalid, please try again");
-            retrieveAccountNumber();
-        } else if (accountNum > Account.getCounter()) {
-            System.err.println("This account number is invalid, please try again");
-            retrieveAccountNumber();
-        }
-        return accountNum ;
-    }
-    
-
-
-//Farhan, Daniel
-public static Account retrieveAccountType(Client owner) {
-        
-        
-        String type1 = "[1] Checking";
-        String type2 = "[2] Savings";
-        System.out.println("\nPlease enter the desired type of account.");
-        System.out.println("=========================================================");
-        System.out.printf("%n%-32s%-32s%n%n=========================================================%nSelection: ", type1, type2);
-        
-        int accountType = Integer.parseInt(Banking.scanInput("accountType"));
-        
-        Account account = null;
-        
-        switch (accountType) {
-            case 1:
-                account = new CheckingAccount();
-                break;
-
-            case 2:
-                account = new SavingsAccount();
-                break;
-        }
-        return account;
-    }
-
-    public static double retrieveTransactionAmount() {
-        System.out.print("Please enter the desired amount for the current transaction: ");
-        double transAmount = scan.nextDouble();
-        return transAmount;
     }
 
 }
